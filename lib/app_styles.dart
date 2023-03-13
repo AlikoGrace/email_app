@@ -5,7 +5,7 @@ const double kHeading1 = 7;
 const double kHeading2 = 6;
 const double kHeading3 = 5;
 const double kHeading4 = 4;
-const double kBody = 3;
+const double kBody1 = 3;
 const double kBody2 = 2.5;
 
 const Color kPrimaryColor = Color(0xff362BFD);

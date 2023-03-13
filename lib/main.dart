@@ -30,6 +30,7 @@ class HomePage extends StatelessWidget {
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             color: kBackgroundColor,
@@ -45,8 +46,9 @@ class HomePage extends StatelessWidget {
                         Text(
                           'All Inboxes',
                           style: kJakartaHeading1.copyWith(
-                              fontSize: SizeConfig.blockScreenHorizontal! *
-                                  kHeading1),
+                              fontSize:
+                                  SizeConfig.blockScreenHorizontal! * kHeading1,
+                              color: kDarkColor),
                         ),
                         Icon(
                           Icons.chevron_right,
@@ -57,7 +59,8 @@ class HomePage extends StatelessWidget {
                     Text(
                       'Total 2500 Messages, 3 Unread',
                       style: kJakartaBodyMedium.copyWith(
-                          fontSize: SizeConfig.blockScreenHorizontal! * kBody2),
+                          fontSize: SizeConfig.blockScreenHorizontal! * kBody2,
+                          color: kParagraphColor),
                     ),
                   ],
                 ),
@@ -68,6 +71,93 @@ class HomePage extends StatelessWidget {
                 )
               ],
             ),
+          ),
+          Container(
+            color: kBackgroundColor,
+            height: 28,
+          ),
+          Container(
+            color: kBackgroundColor,
+            child: SizedBox(
+              height: 98,
+              child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.only(
+                        left: index == 0 ? 24 : 0,
+                        right: index == 10 - 1 ? 24 : 8),
+                    child: Column(
+                      children: [
+                        Stack(
+                          children: [
+                            const CircleAvatar(
+                              maxRadius: 36,
+                              backgroundColor: kWhiteColor,
+                              foregroundImage: AssetImage('images/google.png'),
+                            ),
+                            Positioned(
+                              right: 0,
+                              bottom: 0,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 2,
+                                  horizontal: 8,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: kPrimaryColor,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: IntrinsicWidth(
+                                  child: Text(
+                                    '12',
+                                    style: kJakartaBodyBold.copyWith(
+                                        fontSize:
+                                            SizeConfig.blockScreenHorizontal! *
+                                                kBody2,
+                                        color: kWhiteColor),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          'Google',
+                          maxLines: 1,
+                          style: kJakartaBodyMedium.copyWith(
+                            fontSize:
+                                SizeConfig.blockScreenHorizontal! * kBody1,
+                            color: kParagraphColor,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+          Container(
+            height: 48,
+            color: kBackgroundColor,
+          ),
+          Container(
+            height: 30,
+            transform: Matrix4.translationValues(0, -24, 0),
+            //i think this makes it be on top, not sure though
+            decoration: BoxDecoration(
+                color: kWhiteColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(32),
+                  topRight: Radius.circular(32),
+                )),
           )
         ],
       ),
