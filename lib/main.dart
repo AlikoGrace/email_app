@@ -1,6 +1,7 @@
 import 'app_styles.dart';
 import 'package:flutter/material.dart';
 import 'size_config.dart';
+import 'custom_tab_indicator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -158,6 +159,57 @@ class HomePage extends StatelessWidget {
                   topLeft: Radius.circular(32),
                   topRight: Radius.circular(32),
                 )),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            transform: Matrix4.translationValues(0, -36, 0),
+            height: 30,
+            child: Row(
+              children: [
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: DefaultTabController(
+                    length: 3,
+                    child: TabBar(
+                      labelPadding: EdgeInsets.only(
+                        right: 24,
+                      ),
+                      indicatorWeight: 8,
+                      isScrollable: true,
+                      labelColor: kDarkColor,
+                      labelStyle: kJakartaBodyBold.copyWith(
+                        fontSize: SizeConfig.blockScreenHorizontal! * kBody1,
+                      ),
+                      indicator: RoundedRectangleTabIndicator(
+                        color: kPrimaryColor,
+                        weight: 4,
+                        width: 24,
+                        padding: 12.0,
+                      ),
+                      splashFactory: NoSplash.splashFactory,
+                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                        (Set<MaterialState> states) {
+                          return states.contains(MaterialState.focused)
+                              ? null
+                              : Colors.transparent;
+                        },
+                      ),
+                      tabs: [
+                        Tab(
+                          text: 'Primary',
+                        ),
+                        Tab(
+                          text: 'Social',
+                        ),
+                        Tab(
+                          text: 'Forums',
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),
